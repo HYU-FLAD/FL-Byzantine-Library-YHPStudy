@@ -72,10 +72,38 @@ Datasets can be extended by adding the dataset in the `datasets` folder. Any lab
 
 ## Installation
 
-1. Install Python 3.8. For convenience, execute the following command.
+You can install the package locally using:
 
+```bash
+pip install .
 ```
-pip install -r requirements.txt
+
+## Usage
+
+- [x] **1. Directly with Python (without installing the package)**
+From your project directory, run:
+
+```bash
+python main.py [arguments]
+python main.py --help
+python main.py  --trials 1 --num_client 10
+```
+
+- [x] **2. As a Command-Line Tool (after installing the package)** 
+If you have installed your package using:
+
+After installation, you can use the main script via the command line:
+
+```bash
+fl-byzantine --help
+fl-byzantine [arguments]
+fl-byzantine --trials 1 --num_client 10
+```
+
+Or import modules in your Python code:
+
+```python
+from fl_byzantine_library import Aggregators, Attacks, Datasets, Models
 ```
 
 ## Citation
