@@ -1,6 +1,11 @@
 # Byzantine attacks and defenses in federated learning Library
 
 This library contains the implementation of the Byzantine attacks and defenses in federated learning.
+original github: https://github.com/CRYPTO-KU/FL-Byzantine-Library.git
+
+python main.py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg 를 실험으로 돌려봤었는데.. cpu로만해서 느린거지 설정을 잘못해서 느린건지 몰르겠지만 기본 epoch가 100까지인데 4시간 뒤에 18까지 밖에 못가서 결국 강종
+<img width="1514" height="868" alt="python main py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg" src="https://github.com/user-attachments/assets/d885f92d-c1fa-4d03-9ad7-eb4c58bc2f93" />
+
 
 ## Aggregators:
 - Aggregators can be extended by adding the aggregator in the `aggregators` folder.
