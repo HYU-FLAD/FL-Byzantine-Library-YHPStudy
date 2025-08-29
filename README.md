@@ -3,40 +3,40 @@
 This library contains the implementation of the Byzantine attacks and defenses in federated learning.
 original github: https://github.com/CRYPTO-KU/FL-Byzantine-Library.git
 
-'parameters.py' 안에 'buck_rand'를 직접 정의해야했었음
+`parameters.py` 안에 `buck_rand`를 직접 정의해야했었음
 
-python main.py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg 를 실험으로 돌려봤었는데.. cpu로만해서 느린거지 설정을 잘못해서 느린건지 몰르겠지만 기본 epoch가 100까지인데 4시간 뒤에 18까지 밖에 못가서 결국 강종
+`python main.py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg` 를 실험으로 돌려봤었는데.. cpu로만해서 느린거지 설정을 잘못해서 느린건지 몰르겠지만 기본 epoch가 100까지인데 4시간 뒤에 18까지 밖에 못가서 결국 강종
 <img width="1514" height="868" alt="python main py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg" src="https://github.com/user-attachments/assets/d885f92d-c1fa-4d03-9ad7-eb4c58bc2f93" />
 
 **Aggregators:** 
-FedAvg(avg): 클라이언트 업데이트의 평균, weight는 데이터셋의 크기에 따라
-Krum(krum): 과반수에 가장 가까운 업데이트를 계산. 가까운 업데이트는 업데이트 사이의 거리를 계산하고 nearest neighbor와의 계산된 거리의 최소합으로 결정
-Bulyan(bulyan): Krum으로 trusted된 업데이트를 선택하고, 좌표계에서 trimmed mean을 계산
-Trimmed mean(tm): 모델  매개변수 차원에 따라 클라이언트의 업데이트를 sort하고 위와 아래 값을 제거(이상치 제거)하고 나머지 평균
-Centered Median(cm): 매개변수에 따라 클라이언트의 중앙값을 가짐 / 업데이트의 거리의 총합을 최소화하는 지점을 찾음
-Centered Clipping(cc): 업데이트 평균이나 중앙에 위치한 ‘τ’ 반경 안에 업데이트가 놓여지도록 함. 악의적인 업데이트가 너무 멀리 위치한 것을 방지
-Sequential Centered Clipping(ccs):  CC를 확장, 좌표계에서 ‘buckets’에 걸쳐 ‘clipping’
-SignSGD(sign): 클라이언트는 그라디언트의 부호만 보내서 서버는 과반수로 aggregate함
-Robust Federated Aggregation RFA (rfa): 업데이트의 기하중앙값 계산
-FL-Trust(fl_trust): validation 데이터셋을 가지고 있음. 클라이언트의 없데이트의 크기는 믿을 수 있는 서버의 그라디언트에 대한 코사인 유사도에 따라 계산
-Gradient Aggregation Sketching GAS (gas): 클라이언트의 업데이트를 ‘sketch’로 압축시키고 Krum이나 Bulyan으로 aggregate
+- FedAvg(avg): 클라이언트 업데이트의 평균, weight는 데이터셋의 크기에 따라
+- Krum(krum): 과반수에 가장 가까운 업데이트를 계산. 가까운 업데이트는 업데이트 사이의 거리를 계산하고 nearest neighbor와의 계산된 거리의 최소합으로 결정
+- Bulyan(bulyan): Krum으로 trusted된 업데이트를 선택하고, 좌표계에서 trimmed mean을 계산
+- Trimmed mean(tm): 모델  매개변수 차원에 따라 클라이언트의 업데이트를 sort하고 위와 아래 값을 제거(이상치 제거)하고 나머지 평균
+- Centered Median(cm): 매개변수에 따라 클라이언트의 중앙값을 가짐 / 업데이트의 거리의 총합을 최소화하는 지점을 찾음
+- Centered Clipping(cc): 업데이트 평균이나 중앙에 위치한 ‘τ’ 반경 안에 업데이트가 놓여지도록 함. 악의적인 업데이트가 너무 멀리 위치한 것을 방지
+- Sequential Centered Clipping(ccs):  CC를 확장, 좌표계에서 ‘buckets’에 걸쳐 ‘clipping’
+- SignSGD(sign): 클라이언트는 그라디언트의 부호만 보내서 서버는 과반수로 aggregate함
+- Robust Federated Aggregation RFA (rfa): 업데이트의 기하중앙값 계산
+- FL-Trust(fl_trust): validation 데이터셋을 가지고 있음. 클라이언트의 없데이트의 크기는 믿을 수 있는 서버의 그라디언트에 대한 코사인 유사도에 따라 계산
+- Gradient Aggregation Sketching GAS (gas): 클라이언트의 업데이트를 ‘sketch’로 압축시키고 Krum이나 Bulyan으로 aggregate
 
 **Attack:**
 _데이터셋 공격_
-Label flipping(label_flip): 데이터셋에서 ‘label’을 바꿈
-Bit-flip(bit_flip): ‘weight’ 매개변수를 바꿔서 모델을 손상시킴
+- Label flipping(label_flip): 데이터셋에서 ‘label’을 바꿈
+- Bit-flip(bit_flip): ‘weight’ 매개변수를 바꿔서 모델을 손상시킴
 _노이즈 공격:_
-Gaussian noise(gaussian):
-Sparse attacks(sparse): 그라디언트의 차원을 일부 손상
-Sparse-optimized(sparse_opt): 차원을 랜덤으로 말고 그라디언트의 크기에 따라 계산해서찾음
+- Gaussian noise(gaussian):
+- Sparse attacks(sparse): 그라디언트의 차원을 일부 손상
+- Sparse-optimized(sparse_opt): 차원을 랜덤으로 말고 그라디언트의 크기에 따라 계산해서찾음
 _최적화 공격_
-Untargeted C&W(cw): 
-Little is enough(alie): 
-Inner Product Manipulation IPM (ipm): 
+- Untargeted C&W(cw): 
+- Little is enough(alie): 
+- Inner Product Manipulation IPM (ipm): 
 **Geometric, 벡터 공간 공격**
-Relocated Orthogonal Perturbation ROP (reloc/rop):
-Min-sum(minsum): 
-Min-max(minmax):
+- Relocated Orthogonal Perturbation ROP (reloc/rop):
+- Min-sum(minsum): 
+- Min-max(minmax):
 
 ## Aggregators:
 - Aggregators can be extended by adding the aggregator in the `aggregators` folder.
