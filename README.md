@@ -8,6 +8,8 @@ original github: https://github.com/CRYPTO-KU/FL-Byzantine-Library.git
 `python main.py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg` 를 실험으로 돌려봤었는데.. cpu로만해서 느린거지 설정을 잘못해서 느린건지 몰르겠지만 기본 epoch가 100까지인데 4시간 뒤에 18까지 밖에 못가서 결국 강종
 <img width="1514" height="868" alt="python main py --num_client 10 --trials 1 --gpu_id -1 --attack alie --aggr avg" src="https://github.com/user-attachments/assets/d885f92d-c1fa-4d03-9ad7-eb4c58bc2f93" />
 
+분석 결과를 노션으로 정리: https://www.notion.so/FL-Byzantine-Library-26f0d989f193801c8d3ce65ad1771efd?source=copy_link
+
 **Aggregators:** 
 - FedAvg(avg): 클라이언트 업데이트의 평균, weight는 데이터셋의 크기에 따라
 - Krum(krum): 과반수에 가장 가까운 업데이트를 계산. 가까운 업데이트는 업데이트 사이의 거리를 계산하고 nearest neighbor와의 계산된 거리의 최소합으로 결정
